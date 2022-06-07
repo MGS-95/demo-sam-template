@@ -5,8 +5,8 @@
 
 
 ```bash
-sam build
-sam deploy --guided
+$ sam build
+$ sam deploy --guided
 ```
 
 Run functions locally and invoke them with the `sam local invoke` command.
@@ -14,37 +14,6 @@ Run functions locally and invoke them with the `sam local invoke` command.
 ```bash
 my-application$ sam local invoke helloFromLambdaFunction --no-event
 ```
-
-<hr>
-
-## Add a resource to your application
-
-
-```
-Resources:
-  MyQueue:
-    Type: AWS::SQS::Queue
-  helloFromLambdaFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
-      Runtime: nodejs16.x
-      DeadLetterQueue:
-        Type: SQS
-        TargetArn: !GetAtt MyQueue.Arn
-      Policies:
-        - SQSSendMessagePolicy:
-            QueueName: !GetAtt MyQueue.QueueName
-```
-
-
-
-Deploy the updated application.
-
-```bash
-my-application$ sam deploy
-```
-
 <hr>
 
 ## Unit tests
@@ -63,5 +32,24 @@ my-application$ npm run test
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-aws cloudformation delete-stack --stack-name demo-sam-template
+$ aws cloudformation delete-stack --stack-name demo-sam-template
+```
+
+<hr>
+
+## Lint
+
+Check the lint.
+```bash
+$ npm run lint
+$ npm run lint:fix
+```
+<hr>
+
+## Prettier
+
+Formatting the code
+```bash
+$ npm run prettier
+$ npm run prettier:write
 ```
