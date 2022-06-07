@@ -1,4 +1,4 @@
-# demo-sam-template
+# sam 用 demo テンプレート
 
 
 ## Deploy the sample application
